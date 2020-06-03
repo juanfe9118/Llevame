@@ -1,3 +1,6 @@
+"""
+QUERY TO INITIALIZE DEPARTMENT AND CITY MODELS
+"""
 INSERT INTO public.login_department(name, code)
     VALUES ('Antioquia', 5),
            ('Atlantico', 8),
@@ -34,9 +37,8 @@ INSERT INTO public.login_department(name, code)
            ('Vichada', 99);
 
 INSERT INTO public.login_city(
-	name, department)
-	VALUES (?, ?, ?);
-    (1, 1, 1, 'MEDELLIN'),
+	id, department_id, code , name)
+	VALUES (1, 1, 1, 'MEDELLIN'),
 (2, 1, 2, 'ABEJORRAL'),
 (3, 1, 4, 'ABRIAQUI'),
 (4, 1, 21, 'ALEJANDRIA'),
