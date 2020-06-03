@@ -1,5 +1,13 @@
 from django.db import models
 
+def validateEmail( email ):
+    from django.core.validators import validate_email
+    from django.core.exceptions import ValidationError
+    try:
+        validate_email( email )
+        return True
+    except ValidationError:
+        return False
 
 class User(models.Model):
     """
@@ -18,7 +26,7 @@ class User(models.Model):
 
     first_name = models.CharField(max_length=32, default="")
     last_name = models.CharField(max_length=32, default="")
-    email = models.EmailField(max_length=254, default="")
+    email = models.EmailField(max_length=254, blank=False, unique=True, validators=[validateEmail])
     type_id = models.CharField(max_length=2, default="")
     n_document = models.CharField(max_length=32, default="")
     department = models.CharField(max_length=32, default="")
@@ -30,7 +38,7 @@ class User(models.Model):
         verbose_name_plural = ("Users")
 
     def __str__(self):
-        return self.name
+        return self.first_name
 
     def get_absolute_url(self):
         return reverse("User_detail", kwargs={"pk": self.pk})
