@@ -40,8 +40,14 @@ class User(models.Model):
         return reverse("User_detail", kwargs={"pk": self.pk})
 
 class Department(models.Model):
-    
+    """
+        Department Model
+        Attributtes:
+        - Name
+        - Code
+    """
     name = models.CharField(max_length=32, default="")
+    code = models.IntegerField(null=True)
     
     class Meta:
         verbose_name = ("Department")
@@ -56,10 +62,13 @@ class Department(models.Model):
         return reverse("Department_detail", kwargs={"pk": self.pk})
 
 class City(models.Model):
-
+    """
+        City Model
+        
+    """
+    department = models.ForeignKey(Department, verbose_name=("department"), on_delete=models.CASCADE, null=True)
+    code = models.IntegerField(null=True)
     name = models.CharField(max_length=32, default="")
-    department = models.CharField(max_length=32, default="")
-
 
     class Meta:
         verbose_name = ("City")
