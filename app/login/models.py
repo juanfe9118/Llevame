@@ -24,14 +24,15 @@ class User(models.Model):
         - Password (Encryptation missed)
     """
 
-    first_name = models.CharField(max_length=32, default="")
-    last_name = models.CharField(max_length=32, default="")
-    email = models.EmailField(max_length=254, blank=False, unique=True, validators=[validateEmail])
-    type_id = models.CharField(max_length=2, default="")
-    n_document = models.CharField(max_length=32, default="")
-    department = models.CharField(max_length=32, default="")
-    city = models.CharField(max_length=32, default="")
-    password = models.CharField(max_length=32, default="")
+    first_name = models.CharField(max_length=32, blank=False, null=False)
+    last_name = models.CharField(max_length=32, blank=False, null=False)
+    email = models.EmailField(max_length=254, blank=False, null=False, unique=True, validators=[validateEmail])
+    type_id = models.CharField(max_length=2, blank=False, null=False)
+    n_document = models.CharField(max_length=32, blank=False, null=False)
+    department = models.CharField(max_length=32, blank=False, null=False)
+    city = models.CharField(max_length=32, blank=False, null=False)
+    password = models.CharField(max_length=32, blank=False, null=False)
+
 
     class Meta:
         verbose_name = ("User")
@@ -51,8 +52,8 @@ class Department(models.Model):
         - Name
         - Code
     """
-    name = models.CharField(max_length=32, default="")
-    code = models.IntegerField(null=True)
+    name = models.CharField(max_length=32, blank=False, null=False)
+    code = models.IntegerField(null=False)
 
     class Meta:
         verbose_name = ("Department")
