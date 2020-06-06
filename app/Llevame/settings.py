@@ -69,6 +69,8 @@ TEMPLATES = [
     },
 ]
 
+AUTH_USER_MODEL = 'login.User'
+
 WSGI_APPLICATION = 'Llevame.wsgi.application'
 
 
