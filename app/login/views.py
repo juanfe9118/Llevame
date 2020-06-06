@@ -10,6 +10,8 @@ class UserViewSet(viewsets.ModelViewSet):
         API endpoints:
         /api/users GET - Returns a list of all users
         /api/users/<user_id> GET - Returns a single user identified by id or 404 if no match
+        /api/users POST - Creates a new user
+        /api/users/<user_id> PUT - Update user information
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
