@@ -6,7 +6,7 @@ class UserManager(BaseUserManager):
     """ User manager model """
 
 
-    def create_user(self, first_name, last_name, type_id, n_document, department, city, email, password):
+    def create_user(self, first_name=None, last_name=None, type_id=None, n_document=None, department=None, city=None, email=None, password=None):
         """ Create a user """
         if not first_name:
             raise ValueError("User must to have a first name")
@@ -74,7 +74,7 @@ class User(AbstractBaseUser):
     first_name = models.CharField(max_length=32, blank=False, null=False)
     last_name = models.CharField(max_length=32, blank=False, null=False)
     type_id = models.CharField(max_length=2, blank=False, null=False)
-    n_document = models.CharField(max_length=32, blank=False, null=False)
+    n_document = models.CharField(max_length=32, blank=False, null=False, unique=True)
     department = models.CharField(max_length=32, blank=False, null=False)
     city = models.CharField(max_length=32, blank=False, null=False)
     email = models.EmailField(max_length=90, blank=False, null=False, unique=True)
@@ -86,7 +86,7 @@ class User(AbstractBaseUser):
     is_superuser = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name', 'type_id', 'n_document', 'department', 'city']
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'type_id', 'n_document', 'department', 'city', 'password']
 
     # Manager Class
     objects = UserManager()
