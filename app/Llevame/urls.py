@@ -1,4 +1,4 @@
-"""Llevame URL Configuration
+"""llevame URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.0/topics/http/urls/
@@ -14,8 +14,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
+from rest_framework import routers
+from app.llevame.apps.chat import views
+
+
+router = routers.DefaultRouter()
+router.register(r'messages', views.message_view_set)
+router.register(r'chat', views.chat_view_set)
 
 urlpatterns = [
+    path('', include(router.urls)),
+    path('api-chat/', include('rest_framework.urls', namespace='rest_framework')),
+    path('chat/', include('llevame.apps.chat.urls')),
     path('admin/', admin.site.urls),
 ]
