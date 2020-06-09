@@ -8,11 +8,13 @@ COPY ./requirements.txt /requirements.txt
 
 ADD https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz .
 
-RUN pip install -r requirements.txt; \
+RUN adduser --gecos "" --disabled-password app \
+    && apt-get update && apt-get install git git-flow -y \
+    && pip install -r requirements.txt; \
     tar -C /usr/local/bin -xzvf dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
-    && rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+    && rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && cd /home/app && git clone https://github.com/juanfe9118/Llevame.git
 
-RUN adduser --gecos "" --disabled-password app
 USER app
 
-WORKDIR /home/app
+WORKDIR /home/app/Llevame
