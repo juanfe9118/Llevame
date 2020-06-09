@@ -1,13 +1,13 @@
-from app.llevame.apps.chat.models import chats, messages
+from llevame.apps.chat.models import chats, messages
 from rest_framework import serializers
 
 
 class messages_serializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = chats
-        fields = ['url', 'pub_date', 'content', 'chats']
+        model = messages
+        fields = ['url', 'pub_date', 'content', 'chat']
 
 class chat_serializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = messages
+        model = chats
         fields = ['url', 'token']

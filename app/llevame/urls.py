@@ -16,16 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
-from app.llevame.apps.chat import views
+from llevame.apps.chat import views
 
 
 router = routers.DefaultRouter()
 router.register(r'messages', views.message_view_set)
-router.register(r'chat', views.chat_view_set)
+router.register(r'chats', views.chat_view_set)
 
 urlpatterns = [
     path('', include(router.urls)),
     path('api-chat/', include('rest_framework.urls', namespace='rest_framework')),
-    path('chat/', include('llevame.apps.chat.urls')),
     path('admin/', admin.site.urls),
 ]

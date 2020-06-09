@@ -37,8 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'llevame.apps.chat.apps.ChatConfig',
     'rest_framework',
+    'llevame.apps.chat.apps.ChatConfig'
 ]
 
 MIDDLEWARE = [

@@ -7,7 +7,7 @@ class message_view_set(viewsets.ModelViewSet):
     """
     API endpoint that allows messages to be viewed or edited.
     """
-    queryset = messages.objects.all().order_by('-date_joined')
+    queryset = messages.objects.all().order_by('pub_date')
     serializer_class = messages_serializer
 
 class chat_view_set(viewsets.ModelViewSet):

@@ -2,6 +2,7 @@
     Defines the data models for the chat app
 '''
 from django.db import models
+from llevame.apps.login.models import users
 
 
 class chats(models.Model):
@@ -11,6 +12,7 @@ class chats(models.Model):
 
     token = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
+    user = models.ManyToManyField(users)
 
     def __str__(self):
         '''
