@@ -13,7 +13,8 @@ RUN adduser --gecos "" --disabled-password app \
     && pip install -r requirements.txt; \
     tar -C /usr/local/bin -xzvf dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
     && rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
-    && cd /home/app && git clone https://github.com/juanfe9118/Llevame.git
+    && cd /home/app && git clone https://github.com/juanfe9118/Llevame.git \
+	&& chown app:app -R /home/app/Llevame
 
 USER app
 
