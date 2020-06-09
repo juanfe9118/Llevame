@@ -10,7 +10,7 @@ class UserManager(BaseUserManager):
     """ User manager model """
 
 
-    def create_user(self, first_name=None, last_name=None, type_id=None, n_document=None, department=None, city=None, email=None, password=None):
+    def create_user(self, first_name=None, last_name=None, type_id=None, n_document=None, department=None, city=None, picture=None, email=None, password=None):
         """ Create a user """
         if not first_name:
             raise ValueError("User must to have a first name")
@@ -24,6 +24,8 @@ class UserManager(BaseUserManager):
             raise ValueError("User must to have a department")
         if not city:
             raise ValueError("User must to have a city")
+        if picture:
+            self.validate_image(picture)
         if not email:
             raise ValueError("User must to have an email")
         if not password:
@@ -36,6 +38,7 @@ class UserManager(BaseUserManager):
                n_document = n_document,
                department = department,
                city = city,
+               picture = picture,
                email = self.normalize_email(email)
         )
         user.set_password(password)
@@ -60,6 +63,15 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+    def validate_image(self, picture):
+        if picture:
+            if picture.size > 2000000:
+                raise ValueError('Max size allowed 2MB')
+            if picture.image.width < 180:
+                raise ValueError('Width should be min 180px')
+            if picture.image.height < 180:
+                raise ValueError('Height should be min 180px')
+
 
 class User(AbstractBaseUser):
     """
@@ -81,7 +93,9 @@ class User(AbstractBaseUser):
     n_document = models.CharField(max_length=32, blank=False, null=False, unique=True)
     department = models.CharField(max_length=32, blank=False, null=False)
     city = models.CharField(max_length=32, blank=False, null=False)
-    email = models.EmailField(max_length=90, blank=False, null=False, unique=True)
+    #pillow necessary to user imagefield
+    picture = models.ImageField(upload_to='pictures', height_field=None, width_field=None, max_length=None)
+    email = models.EmailField(max_length=90, blank=True, null=True, unique=True)
     date_joined = models.DateTimeField(auto_now_add=True)
     last_login = models.DateTimeField(auto_now=True)
     is_admin = models.BooleanField(default=False)

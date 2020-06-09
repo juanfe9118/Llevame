@@ -1,7 +1,7 @@
 from rest_framework.response import Response
 from .models import User, Department, City
-from rest_framework import viewsets
-from .serializers import UserSerializer, DepartmentSerializer, CitySerializer
+from rest_framework import viewsets, serializers
+from .serializers import UserSerializer, RegisterUserSerializer, UpdateUserSerializer, DepartmentSerializer, CitySerializer
 from rest_framework.decorators import action
 
 
@@ -17,6 +17,40 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     lockup_field = 'id'
     http_method_names = ['get', 'head', 'post', 'put']
+
+    def create(self, request):
+        """ User POST request
+            /api/users POST - Creates a new user
+        """
+        serializer = RegisterUserSerializer(data=request.data)
+        if serializer.is_valid():
+            data = request.data
+            if data.get('password') != data.get('password2'):
+                raise serializers.ValidationError({'password': 'Passwords must match'})
+            user = User.objects.create_user(data.get('first_name'), data.get('last_name'), data.get('type_id'), data.get('n_document'), data.get('department'), data.get('city'), data.get('picture'), data.get('email'), data.get('password'))
+            r ={'response': 'User created successfully', 'user': UserSerializer(user).data}
+            return Response(r, status=201)
+        else:
+            return Response(serializer.errors, status=400)
+        
+
+
+    def update(self, request, pk=None):
+        """ User PUT request
+            /api/users/<user_id> PUT - Update user information
+        """
+        serializer = UpdateUserSerializer(data=request.data)
+        if serializer.is_valid():
+            user = request.user
+            user.first_name = request.data.get('first_name')
+            user.last_name = request.data.get('last_name')
+            user.department = request.data.get('department')
+            user.city = request.data.get('city')
+            user.save()
+            r = {'response': 'Successfuly updated', 'user': UserSerializer(user).data}
+            return Response(r, status=200)
+        return Response(serializer.errors, status=400)
+
 
 
 class DepartmentViewSet(viewsets.ModelViewSet):
