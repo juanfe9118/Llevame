@@ -1,5 +1,7 @@
 from rest_framework.response import Response
 from .models import User, Department, City
+from vehicles.models import Vehicle
+from vehicles.serializers import VehicleSerializer
 from rest_framework import viewsets, serializers
 from .serializers import UserSerializer, RegisterUserSerializer, UpdateUserSerializer, DepartmentSerializer, CitySerializer
 from rest_framework.decorators import action
@@ -12,6 +14,7 @@ class UserViewSet(viewsets.ModelViewSet):
         /api/users/<user_id> GET - Returns a single user identified by id or 404 if no match
         /api/users POST - Creates a new user
         /api/users/<user_id> PUT - Update user information
+        /api/users/<user_id>/vehicles POST - Create a new vehicle
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
@@ -47,10 +50,48 @@ class UserViewSet(viewsets.ModelViewSet):
             user.department = request.data.get('department')
             user.city = request.data.get('city')
             user.save()
-            r = {'response': 'Successfuly updated', 'user': UserSerializer(user).data}
+            r = {'response': 'Successfully updated', 'user': UserSerializer(user).data}
             return Response(r, status=200)
         return Response(serializer.errors, status=400)
 
+    
+    @action(detail=True, methods=['GET'])
+    def vehicles(self, request, pk):
+        """
+            GET REQUEST
+            /api/users/<user_id>/vehicles GET - Return list of vehicles of a user
+        """
+        user = self.get_object()
+        vehicles = Vehicle.objects.filter(user=user)
+        serializer = VehicleSerializer(vehicles, many=True)
+        if len(serializer.data):
+            return Response({'response': 'Succesful request', 'vehicles': serializer.data, 'user': UserSerializer(user).data})
+        else:
+            return Response({'response': "User doesn't have any vehicle registered", 'user': UserSerializer(user).data}, status=404)
+
+
+    @action(detail=True, methods=['POST'])
+    def vehicles(self, request, pk):
+        """
+            POST REQUEST
+            /api/users/<user_id>/vehicles POST - Create a new vehicle
+        """
+        user = self.get_object()
+        serializer = VehicleSerializer(data=request.data)
+        if serializer.is_valid():
+            new_vehicle = Vehicle(plate=serializer.data['plate'], model=serializer.data['model'], color=serializer.data['color'], brand=serializer.data['brand'], user=user)
+            new_vehicle.save()
+            return Response({'response': 'Vehicle registered successfully', 'vehicle': VehicleSerializer(new_vehicle).data}, status=201)
+        return Response(serializer.errors)
+
+    
+    @action(detail=True, methods=['PUT'])
+    def vehicles(self, request, pk):
+        """
+            PUT REQUEST
+            /api/users/<user_id>/vehicles/<vehicle_id> PUT - Update vehicle information
+        """
+        return Response('Developing')
 
 
 class DepartmentViewSet(viewsets.ModelViewSet):
@@ -67,6 +108,10 @@ class DepartmentViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['GET'])
     def cities(self, request, pk):
+        """
+            GET REQUEST
+            /api/departments/<id>/cities: GET - Returns list of cities filtered by department id
+        """
         department = self.get_object()
         cities = City.objects.filter(department=department)
         serializer = CitySerializer(cities, many=True)

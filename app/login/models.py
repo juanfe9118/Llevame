@@ -82,7 +82,7 @@ class User(AbstractBaseUser):
         - Email
         - Type of ID
         - ID (n_document)
-        - Picture (Missed)
+        - Picture
         - Department
         - City
     """

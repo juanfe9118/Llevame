@@ -14,4 +14,25 @@ class UserAdmin(BaseUserAdmin):
     list_filter = ()
     fieldsets = ()
 
+class DepartmentAdmin(admin.ModelAdmin):
+    """ Define Department admin panel """
+    list_display = ('name', 'code')
+    ordering = ('name',)
+    
+    filter_horizontal = ()
+    list_filter = ()
+    fieldsets = ()
+
+class CityAdmin(admin.ModelAdmin):
+    """ Define City admin panel """
+    list_display = ('name', 'code', 'department')
+    ordering = ('name',)
+    
+    filter_horizontal = ()
+    list_filter = ()
+    fieldsets = ()
+
+
 admin.site.register(User, UserAdmin)
+admin.site.register(Department, DepartmentAdmin)
+admin.site.register(City, CityAdmin)
