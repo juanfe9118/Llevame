@@ -16,7 +16,17 @@ services:
         ports:
             - "8000:8000"
         volumes:
-            - ./app:/app
-        command: sh -c "dockerize -wait tcp://db:5432 python manage.py runserver 0.0.0.0:8000"
+            - ./app:/home/llevame/app
+        command: sh -c "dockerize -wait tcp://db:5432 python app/manage.py runserver 0.0.0.0:8000"
         depends_on:
             - "db"
+
+    front:
+        image: node:latest
+        ports:
+            - "3000:3000"
+        volumes:
+            - ./web:/home/llevame
+        stdin_open: true
+        working_dir: /home/llevame
+        command: bash -c "cd llevame && npm install && npm start"
