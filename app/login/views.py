@@ -70,8 +70,8 @@ class UserViewSet(viewsets.ModelViewSet):
             return Response({'response': "User doesn't have any vehicle registered", 'user': UserSerializer(user).data}, status=404)
 
 
-    @action(detail=True, methods=['POST'])
-    def vehicles(self, request, pk):
+    @vehicles.mapping.post
+    def create_vehicle(self, request, pk):
         """
             POST REQUEST
             /api/users/<user_id>/vehicles POST - Create a new vehicle
@@ -84,14 +84,14 @@ class UserViewSet(viewsets.ModelViewSet):
             return Response({'response': 'Vehicle registered successfully', 'vehicle': VehicleSerializer(new_vehicle).data}, status=201)
         return Response(serializer.errors)
 
-    
-    @action(detail=True, methods=['PUT'])
-    def vehicles(self, request, pk):
+
+    @vehicles.mapping.put
+    def update_vehicle(self, request, pk):
         """
             PUT REQUEST
             /api/users/<user_id>/vehicles/<vehicle_id> PUT - Update vehicle information
         """
-        return Response('Developing')
+        return Response('UPDATE')
 
 
 class DepartmentViewSet(viewsets.ModelViewSet):
