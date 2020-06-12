@@ -99,8 +99,8 @@ class UserManager(BaseUserManager):
                last_name=last_name,
                type_id=type_id,
                n_document=n_document,
-               department=department,
-               city=city,
+               department=Department.objects.get(id=department),
+               city=City.objects.get(id=city),
                email=self.normalize_email(email),
                password=password
         )
