@@ -2,7 +2,7 @@
     Defines the data models for the chat app
 '''
 from django.db import models
-from llevame.apps.login.models import users
+from .models import users
 
 
 class chats(models.Model):

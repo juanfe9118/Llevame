@@ -1,6 +1,6 @@
-from llevame.apps.chat.models import chats, messages
+from .models import chats, messages
 from rest_framework import viewsets
-from llevame.apps.chat.serializers import chat_serializer, messages_serializer
+from .serializers import chat_serializer, messages_serializer
 
 
 class message_view_set(viewsets.ModelViewSet):

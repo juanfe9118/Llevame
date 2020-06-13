@@ -1,4 +1,4 @@
-from llevame.apps.chat.models import chats, messages
+from .models import chats, messages
 from rest_framework import serializers
 
 
