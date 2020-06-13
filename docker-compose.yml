@@ -4,7 +4,7 @@ services:
     db:
         image: postgres:12.3
         volumes:
-            - ~/postgres/llevame/dumps:/var/backups
+            - ~/postgres:/var/lib/postgresql/data
         environment:
             - POSTGRES_DB=postgres
             - POSTGRES_USER=postgres
@@ -18,7 +18,7 @@ services:
         ports:
             - "8000:8000"
         volumes:
-            - ./app:/home/llevame/app
+            - ./:/home/app/llevame/
         command: sh -c "dockerize -wait tcp://db:5432 python app/manage.py runserver 0.0.0.0:8000"
         depends_on:
             - "db"
@@ -28,7 +28,7 @@ services:
         ports:
             - "3000:3000"
         volumes:
-            - ./web:/home/llevame
+            - ./:/home/llevame
         stdin_open: true
-        working_dir: /home/llevame
-        command: bash -c "cd llevame && npm install && npm start"
+        working_dir: /home/llevame/web/llevame
+        command: bash -c "npm install && npm start"
