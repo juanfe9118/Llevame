@@ -15,7 +15,7 @@ To deploy a development or production environment, (after installing docker) fol
 
 ### GET
 #### Return a list with all users
-- Response is a JSON with the next information **id, first_name, last_name, type_id, n_document,  department, city, picture, email and date_joined**
+- Response is a JSON with the next information **id, first_name, last_name, type_id, n_document,  department, city, picture, email, is_driver and date_joined**
 
 **Example**
 
@@ -35,6 +35,7 @@ To deploy a development or production environment, (after installing docker) fol
             "city": 3,
             "picture": "http://localhost:8000/media/pictures/MockupWeb_2.png",
             "email": "vic@gmail.com",
+            "is_driver": "True",
             "date_joined": "2020-06-11T02:48:43.532600Z"
         }
     ]
@@ -64,7 +65,7 @@ To deploy a development or production environment, (after installing docker) fol
 }
 ```
 
-- Response is a JSON with the next information: **id, first_name, last_name, type_id, n_document,  department, city, picture, email and date_joined**
+- Response is a JSON with the next information: **id, first_name, last_name, type_id, n_document,  department, city, picture, email, is_driver and date_joined**
 
 ```json
 {
@@ -79,6 +80,7 @@ To deploy a development or production environment, (after installing docker) fol
         "city": 1,
         "picture": null,
         "email": "test@gmail.com",
+        "is_driver": "True",
         "date_joined": "2020-06-14T04:33:19.366373Z"
     }
 }
@@ -103,13 +105,14 @@ To deploy a development or production environment, (after installing docker) fol
     "city": 3,
     "picture": "http://localhost:8000/media/pictures/MockupWeb_2.png",
     "email": "vic@gmail.com",
+    "is_driver": "True",
     "date_joined": "2020-06-11T02:48:43.532600Z"
 }
 ```
 
 ### PUT
 #### Update user information
-- Body fields that can be send, each one is optional:  **first_name, last_name, department, city and picture**
+- Body fields that can be send, each one is optional:  **first_name, last_name, department, city, picture and is_driver**
 - Require Token to be Authenticated
 
 **Example**
@@ -120,8 +123,9 @@ To deploy a development or production environment, (after installing docker) fol
 			'first_name': 'Andres',
 			'last_name': 'Arteaga',
 			'department': '1',
-			'city': '1'
-			'picture': '('picture', open('/path/to/file','rb'))'
+			'city': '1',
+			'picture': '('picture', open('/path/to/file','rb'))',
+            "is_driver": "True",
 		}
 	'headers': {
 			'Authorization': 'Token 290ba582e34cad353272038a4203993943f8c1fc'
@@ -129,7 +133,7 @@ To deploy a development or production environment, (after installing docker) fol
 }
 ```
 
-- Response is a JSON with the next information **id, first_name, last_name, type_id, n_document,  department, city, picture, email and date_joined**
+- Response is a JSON with the next information **id, first_name, last_name, type_id, n_document,  department, city, picture, email, is_driver and date_joined**
 
 **Example**
 
@@ -146,6 +150,7 @@ To deploy a development or production environment, (after installing docker) fol
         "city": 1,
         "picture": null,
         "email": "vic@gmail.com",
+        "is_driver": "True"
         "date_joined": "2020-06-11T02:48:43.532600Z"
     }
 }
