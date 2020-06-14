@@ -133,6 +133,7 @@ class User(AbstractBaseUser):
         - Picture
         - Department
         - City
+        - Is_driver
     """
     first_name = models.CharField(max_length=32, blank=False, null=False)
     last_name = models.CharField(max_length=32, blank=False, null=False)
@@ -159,6 +160,7 @@ class User(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
+    is_driver = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name',
