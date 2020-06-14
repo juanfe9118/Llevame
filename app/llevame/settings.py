@@ -14,6 +14,9 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MEDIA_URL = '/media/'
 
 
 # Quick-start development settings - unsuitable for production
@@ -39,6 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'llevame.apps.chat.apps.ChatConfig'
+    'rest_framework.authtoken',
+    'login',
+    'vehicles',
 ]
 
 MIDDLEWARE = [
@@ -69,7 +75,9 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'llevame.wsgi.application'
+AUTH_USER_MODEL = 'login.User'
+
+WSGI_APPLICATION = 'Llevame.wsgi.application'
 
 
 # Database
@@ -125,7 +133,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# Allows you to control how many objects per page are returned
+
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 10,
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    #'DEFAULT_PERMISSION_CLASSES': [
+    #    'rest_framework.permissions.IsAuthenticated',
+    #]
 }
