@@ -15,7 +15,7 @@ To deploy a development or production environment, (after installing docker) fol
 
 ### GET
 #### Return a list with all users
-- Response is a JSON with the next information **id, first_name, last_name, type_id, n_document,  department, city, picture, email, date_joined**
+- Response is a JSON with the next information **id, first_name, last_name, type_id, n_document,  department, city, picture, email and date_joined**
 
 **Example**
 
@@ -44,7 +44,7 @@ To deploy a development or production environment, (after installing docker) fol
 ### POST
 
 #### Create a new user
-- Body fields required: **first_name, last_name, type_id, n_document, department, city, email, password, password2**
+- Body fields required: **first_name, last_name, type_id, n_document, department, city, email, password and password2**
 - Fields not required: **picture**
 
 **Example**
@@ -64,7 +64,7 @@ To deploy a development or production environment, (after installing docker) fol
 }
 ```
 
-- Response is a JSON with the next information: **id, first_name, last_name, type_id, n_document,  department, city, picture, email, date_joined**
+- Response is a JSON with the next information: **id, first_name, last_name, type_id, n_document,  department, city, picture, email and date_joined**
 
 ```json
 {
@@ -88,7 +88,7 @@ To deploy a development or production environment, (after installing docker) fol
 
 ### GET
 #### Return User information by ID
-- Response is a JSON with the next information **id, first_name, last_name, type_id, n_document,  department, city, picture, email, date_joined**
+- Response is a JSON with the next information **id, first_name, last_name, type_id, n_document,  department, city, picture, email and date_joined**
 
 **Example**
 
@@ -109,7 +109,7 @@ To deploy a development or production environment, (after installing docker) fol
 
 ### PUT
 #### Update user information
-- Body fields that can be send, each one is optional:  **first_name, last_name, department, city, picture**
+- Body fields that can be send, each one is optional:  **first_name, last_name, department, city and picture**
 - Require Token to be Authenticated
 
 **Example**
@@ -129,7 +129,7 @@ To deploy a development or production environment, (after installing docker) fol
 }
 ```
 
-- Response is a JSON with the next information **id, first_name, last_name, type_id, n_document,  department, city, picture, email, date_joined**
+- Response is a JSON with the next information **id, first_name, last_name, type_id, n_document,  department, city, picture, email and date_joined**
 
 **Example**
 
@@ -155,7 +155,7 @@ To deploy a development or production environment, (after installing docker) fol
 
 ### GET
 #### Returns a list of all departments
-- Response is a JSON with the next information: **id, name, code**
+- Response is a JSON with the next information: **id, name and code**
 
 **Example**
 
@@ -188,7 +188,7 @@ To deploy a development or production environment, (after installing docker) fol
 
 ### GET
 #### Returns a list of all cities
-- Response is a JSON with the next information: **id, department, code, name**
+- Response is a JSON with the next information: **id, department_id, code and name**
 
 **Example**
 
@@ -220,11 +220,11 @@ To deploy a development or production environment, (after installing docker) fol
 }
 ```
 
-## “/api/departments/department_id/cities"
+## "/api/departments/department_id/cities"
 
 ### GET
 #### Returns a list of all cities from a department
-- Response is a JSON with the next information: **id, department_id, code, name**
+- Response is a JSON with the next information: **id, department_id, code and name**
 
 **Example**
 
@@ -249,4 +249,31 @@ To deploy a development or production environment, (after installing docker) fol
         "name": "YOLOMBO"
     }, ...
 ]
+```
+
+## "/api/login"
+
+### POST
+#### Log a user with email and password
+- Body required fields: **Email and password**
+
+**Example**
+
+```json
+{
+		"body": {
+			'username': 'vic@gmail.com',
+			'password': '123'}
+}
+```
+
+- Response is a JSON with the next information: **Token and  user_id**
+
+**Example**
+
+```json
+{
+    "token": "290ba582e34cad353272038a4203993943f8c1fc",
+    "user_id": 2
+}
 ```

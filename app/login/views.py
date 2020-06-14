@@ -1,10 +1,12 @@
-from rest_framework.response import Response
 from .models import User, Department, City
-from rest_framework import viewsets, serializers
 from .serializers import CitySerializer, DepartmentSerializer
 from .serializers import UserSerializer, RegisterUserSerializer
 from .serializers import UpdateUserSerializer
+from rest_framework import viewsets, serializers
+from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.decorators import action
+from rest_framework.response import Response
+from rest_framework.authtoken.models import Token
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -112,3 +114,28 @@ class CityViewSet(viewsets.ModelViewSet):
     http_method_names = ['get', 'head']
     queryset = City.objects.all()
     serializer_class = CitySerializer
+
+
+class CustomAuthToken(ObtainAuthToken):
+    """
+        API endpoints:
+        /api/login:
+            POST - Return token and user id if it success
+                   Return "Wrong email or password" if it
+                   fails
+    """
+    def post(self, request, *args, **kwargs):
+        """ POST Request """
+        serializer = self.serializer_class(data=request.data,
+                                           context={'request': request})
+        if serializer.is_valid():
+            user = serializer.validated_data['user']
+            token, created = Token.objects.get_or_create(user=user)
+            return Response({
+                'token': token.key,
+                'user_id': user.pk,
+            })
+        else:
+            raise serializers.\
+                ValidationError(
+                        {'Response error': 'Wrong email or password'})
