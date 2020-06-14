@@ -143,11 +143,11 @@ class User(AbstractBaseUser):
     department = models.ForeignKey(Department,
                                    verbose_name=("department"),
                                    on_delete=models.CASCADE,
-                                   null=True)
+                                   blank=False, null=False)
     city = models.ForeignKey(City,
                              verbose_name=("city"),
                              on_delete=models.CASCADE,
-                             null=True)
+                             blank=False, null=False)
     # pillow necessary to user imagefield
     picture = models.ImageField(upload_to='pictures', height_field=None,
                                 width_field=None, max_length=None,
