@@ -71,6 +71,11 @@ class UserViewSet(viewsets.ModelViewSet):
                 city = request.data.get('city')
                 user.city = City.objects.get(id=city)
             user.picture = request.data.get('picture')
+            if request.data.get('is_driver'):
+                if request.data.get('is_driver') == 'True':
+                    user.is_driver = True
+                else:
+                    user.is_driver = False
             user.save()
             r = {'response': 'Successfully updated',
                  'user': UserSerializer(user).data}
