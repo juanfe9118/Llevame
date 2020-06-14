@@ -11,7 +11,7 @@ To deploy a development or production environment, (after installing docker) fol
 
 # API Guide
 
-## “/api/users"
+## "/api/users"
 
 ### GET
 #### Return a list with all users
@@ -52,15 +52,15 @@ To deploy a development or production environment, (after installing docker) fol
 ```json
 {
     "body": {
-		'first_name': 'Juan',
-		'last_name': 'Buitrago',
-		'type_id': 'CC',
-		'n_document': '1145779861121',
-		'department': '1',
-		'city': '1',
-		'password': '123',
-		'password2': '123',
-		'email': 'test@gmail.com'
+		"first_name": "Juan",
+		"last_name": "Buitrago",
+		"type_id": "CC",
+		"n_document": "1145779861121",
+		"department": 1,
+		"city": 1,
+		"password": "123",
+		"password2": "123",
+		"email": "test@gmail.com"
 	}
 }
 ```
@@ -120,15 +120,15 @@ To deploy a development or production environment, (after installing docker) fol
 ```json
 {
 	"body": {
-			'first_name': 'Andres',
-			'last_name': 'Arteaga',
-			'department': '1',
-			'city': '1',
-			'picture': '('picture', open('/path/to/file','rb'))',
-            "is_driver": "True",
+			"first_name": "Andres",
+			"last_name": "Arteaga",
+			"department": 1,
+			"city": 1
+			"picture": "('picture', open('/path/to/file','rb'))"
+      "is_driver": "True",
 		}
-	'headers': {
-			'Authorization': 'Token 290ba582e34cad353272038a4203993943f8c1fc'
+	"headers": {
+			"Authorization": "Token 290ba582e34cad353272038a4203993943f8c1fc"
 		}
 }
 ```
@@ -156,7 +156,7 @@ To deploy a development or production environment, (after installing docker) fol
 }
 ```
 
-## “/api/departments"
+## "/api/departments"
 
 ### GET
 #### Returns a list of all departments
@@ -184,12 +184,12 @@ To deploy a development or production environment, (after installing docker) fol
             "id": 3,
             "name": "D. C. Santa Fe de Bogotá",
             "code": 11
-        }, ...
+        }
     ]
 }
 ```
 
-## “/api/cities"
+## "/api/cities"
 
 ### GET
 #### Returns a list of all cities
@@ -220,7 +220,7 @@ To deploy a development or production environment, (after installing docker) fol
             "department": 1,
             "code": 4,
             "name": "ABRIAQUI"
-        }, ...
+        }
     ]
 }
 ```
@@ -252,7 +252,7 @@ To deploy a development or production environment, (after installing docker) fol
         "department": 1,
         "code": 890,
         "name": "YOLOMBO"
-    }, ...
+    }
 ]
 ```
 
@@ -267,8 +267,8 @@ To deploy a development or production environment, (after installing docker) fol
 ```json
 {
 		"body": {
-			'username': 'vic@gmail.com',
-			'password': '123'}
+			"username": "vic@gmail.com",
+			"password": "123"}
 }
 ```
 
