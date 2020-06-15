@@ -2,6 +2,8 @@ from .models import User, Department, City
 from .serializers import CitySerializer, DepartmentSerializer
 from .serializers import UserSerializer, RegisterUserSerializer
 from .serializers import UpdateUserSerializer
+from chat.models import Chat
+from chat.serializers import ChatSerializer
 from rest_framework import viewsets, serializers
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.decorators import action
@@ -149,6 +151,27 @@ class UserViewSet(viewsets.ModelViewSet):
                              'vehicle': VehicleSerializer(vehicle).data})
         return Response(serializer.errors)
 
+    @action(methods=['GET', 'POST'], detail=True)
+    def chats(self, request, pk=None):
+        """
+        /api/users/<id>/chats/
+        GET - Returns a list of chats associated with the user
+        POST - Creates a new chat with the users sent in the body
+        """
+
+        user = self.get_object()
+        if request.method == "GET":
+            chats = Chat.objects.filter(users=user)
+            context = {
+                'request': request
+            }
+            serializer = ChatSerializer(chats, many=True, context=context)
+            return Response(serializer.data)
+        if request.method == "POST":
+            serializer = ChatSerializer(data=request.data)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            return Response(serializer.data, status=201)
 
 class DepartmentViewSet(viewsets.ModelViewSet):
     """
