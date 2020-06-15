@@ -1,5 +1,5 @@
 from .models import Chat, Message
-from .serializers import ChatSerializer, MessageSerializer
+from .serializers import ChatSerializer, MessageSerializer, UpdateMessageSerializer
 from rest_framework import permissions
 from rest_framework import viewsets
 from rest_framework.response import Response
@@ -12,7 +12,13 @@ class MessageViewSet(viewsets.ModelViewSet):
     """
     permission_classes = [permissions.IsAuthenticated]
     queryset = Message.objects.all().order_by('pub_date')
-    serializer_class = MessageSerializer
+    # serializer_class = MessageSerializer
+
+    def get_serializer_class(self):
+        if (self.request.method == "PUT"):
+            return UpdateMessageSerializer
+        else:
+            return MessageSerializer
 
 
 class ChatViewSet(viewsets.ModelViewSet):
@@ -23,6 +29,10 @@ class ChatViewSet(viewsets.ModelViewSet):
 
     @action(methods=['GET'], detail=True)
     def messages(self, request, pk=None):
+        """
+        /api/chats/<id>/messages
+        GET - Returns a list of messages associated with the chat
+        """
         chat = self.get_object()
         messages = Message.objects.filter(chat=chat)
         context = {
