@@ -6,8 +6,8 @@ function HeaderLanding() {
         <header style={headerStyle}>
             <h1 style={h1Style}>Llévame</h1>
             <div className='headerdiv'>
-                <Link style={linkStyle} to='#'>Log In</Link>
-                <Link style={linkStyle} to='#'>Sign Up</Link>
+                <Link style={linkStyle} to='/login'>Log In</Link>
+                <Link style={linkStyle} to='/signup'>Sign Up</Link>
             </div>
         </header>
     )
