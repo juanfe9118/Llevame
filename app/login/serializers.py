@@ -13,7 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['id', 'first_name', 'last_name',
                   'type_id', 'n_document',
                   'department', 'city',
-                  'picture', 'email', 'date_joined']
+                  'picture', 'email', 'is_driver', 'date_joined']
 
 
 class RegisterUserSerializer(serializers.ModelSerializer):
@@ -35,7 +35,7 @@ class UpdateUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'department', 'city',
-                  'picture', 'date_joined']
+                  'picture', 'is_driver', 'date_joined']
         extra_kwargs = {
             'first_name': {'required': False},
             'last_name': {'required': False},
