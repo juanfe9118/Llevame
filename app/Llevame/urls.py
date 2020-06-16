@@ -18,11 +18,17 @@ from django.urls import path, include
 from django.conf.urls import url
 from django.conf import settings
 from django.views.static import serve
+from patches import routers
+from login.urls import router as login_router
+
+
+router = routers.DefaultRouter()
+router.extend(login_router)
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('login.urls')),
+    path('api/', include(router.urls)),
 ]
 
 if settings.DEBUG:
