@@ -110,14 +110,12 @@ class SignUp extends Component {
                             value={this.state.email}
                             onChange={this.onChange}
                         /><br></br>
-                        <input
-                            list='IdType'
-                            name='type_id'
-                            placeholder='ID Type'
-                            value={this.state.type_id}
-                            onChange={this.onChange}
-                        />
-                        <datalist id='IdType'><option value='CC' /><option value='CE' /><option value='PA' /></datalist>
+                        <select name='type_id' onChange={this.onChange}>
+                            <option value="" disabled selected>ID Type</option>
+                            <option value='CC'>CC</option>
+                            <option value='CE'>CE</option>
+                            <option value='PA'>PA</option>
+                        </select>
                         <input
                             type='text'
                             name='n_document'
