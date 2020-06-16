@@ -20,11 +20,12 @@ from django.conf import settings
 from django.views.static import serve
 from patches import routers
 from login.urls import router as login_router
+from chat.urls import router as chat_router
 
 
 router = routers.DefaultRouter()
 router.extend(login_router)
-
+router.extend(chat_router)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
