@@ -119,28 +119,20 @@ class SignUp extends Component {
                         />
                         <datalist id='IdType'><option value='CC' /><option value='CE' /><option value='PA' /></datalist>
                         <input
-                            type='number'
+                            type='text'
                             name='n_document'
                             placeholder='ID Number'
                             value={this.state.n_document}
                             onChange={this.onChange}
                         /><br></br>
-                        <input
-                            list='depList'
-                            name='department'
-                            placeholder='Department'
-                            
-                            onChange={this.depChange}
-                        />
-                        <datalist id='depList'><DepList depList={this.state.depList} /></datalist>
-                        <input
-                            list='cityList'
-                            name='city'
-                            placeholder='City'
-                            value={this.state.city}
-                            onChange={this.cityChange}
-                        />
-                        <datalist id='cityList'><CityList cityList={this.state.cityList} /></datalist><br></br>
+                        <select name='department' onChange={this.depChange}>
+                            <option value="" disabled selected>Department</option>
+                            <DepList depList={this.state.depList} />
+                        </select>
+                        <select name='city' onChange={this.cityChange}>
+                            <option value="" disabled selected>City</option>
+                            <CityList cityList={this.state.cityList} />
+                        </select><br></br>
                         <input
                             type='password'
                             name='password'

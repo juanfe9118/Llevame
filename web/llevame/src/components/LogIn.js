@@ -8,6 +8,7 @@ export class LogIn extends Component {
         password: '',
         redirect: null,
         token: null,
+        user_id: null,
     }
 
     //When needing information to populate page use mount option to load states
@@ -24,11 +25,9 @@ export class LogIn extends Component {
             password: this.state.password
         })
             .then(res => {
-                console.log(res.data)
-                let user_id = res.data.user_id;
-                this.setState({ token: res.data.token})
-                axios.get(`http://localhost:8000/api/users/${user_id}`)
-                    .then(res => console.log(res.data));
+                console.log(res.data);
+                this.setState({ user_id: res.data.user_id});
+                this.setState({ token: res.data.token});
             });
     }
 
