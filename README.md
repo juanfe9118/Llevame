@@ -266,9 +266,10 @@ To deploy a development or production environment, (after installing docker) fol
 
 ```json
 {
-		"body": {
-			"username": "vic@gmail.com",
-			"password": "123"}
+	"body": {
+		"username": "vic@gmail.com",
+		"password": "123"
+    }
 }
 ```
 
@@ -280,5 +281,193 @@ To deploy a development or production environment, (after installing docker) fol
 {
     "token": "290ba582e34cad353272038a4203993943f8c1fc",
     "user_id": 2
+}
+```
+
+## Messages API
+### "/api/chats/"
+
+#### GET
+Returns all active chats
+
+**Example**
+
+```json
+{
+    "count": 40,
+    "next": "http://localhost:8000/api/chats/?page=2",
+    "previous": null,
+    "results": [
+        {
+            "id": 7,
+            "token": "8f8010d4-4b2e-4253-bcad-53dc9f330439",
+            "users": [
+                1,
+                2
+            ],
+            "messages": []
+        },
+        {
+            "id": 8,
+            "token": "689154a1-95c8-4c92-b80a-c1a6e821d56d",
+            "users": [
+                1,
+                2
+            ],
+            "messages": []
+        },
+        {
+            "id": 9,
+            "token": "d43d2af3-186c-4337-bff9-3472d0c3ef91",
+            "users": [
+                1,
+                2
+            ],
+            "messages": []
+        }
+    ]
+}
+```
+
+#### POST
+Create a new chat
+- Body fields required: **users**
+
+**Example**
+
+```json
+{
+	"body": {
+		"users": [
+            <id1>,
+            <id2>
+        ]
+    }
+}
+```
+
+- Response is a JSON with the next information: **Token and  user_id**
+
+**Example**
+
+```json
+{
+    "id": 9,
+    "token": "d43d2af3-186c-4337-bff9-3472d0c3ef91",
+    "users": [
+        <id1>,
+        <id2>
+    ],
+    "messages": []
+}
+```
+
+### "/api/chats/\<id\>/"
+#### DELETE
+Deletes an specific chat
+ - No Content Response with code 204
+
+#### PUT
+Updates the chat
+- Body fields required: **users**
+
+**Example**
+
+```json
+{
+    "id": 9,
+    "token": "d43d2af3-186c-4337-bff9-3472d0c3ef91",
+    "users": [
+        <id2>
+    ],
+    "messages": []
+}
+```
+
+- Response is a JSON with the updated information
+
+**Example**
+
+```json
+{
+    "content": "Hello"
+}
+```
+
+## Messages API
+
+### "/api/messages/"
+
+#### GET
+Returns all messages
+
+**Example**
+
+```json
+{
+    "id": 2,
+    "chat": 7,
+    "user": 2,
+    "pub_date": "2020-06-15T16:56:08.458782-05:00",
+    "content": "Hi"
+}
+```
+
+#### POST
+Create a new message
+- Body fields required: **user**, **chat**, **content**
+
+**Example**
+
+```json
+{
+	"body": {
+		"user": 2,
+        "chat" : 7,
+        "content": "test"
+    }
+}
+```
+
+- Response is a JSON with the updated information
+
+**Example**
+
+```json
+{
+    "id": 3,
+    "user": 2,
+    "chat": 7,
+    "pub_date": "2020-06-15T17:18:45.923023-05:00",
+    "content": "test"
+}
+```
+
+### "/api/messages/\<id\>/"
+#### DELETE
+Deletes an specific message
+ - No Content Response with code 204
+
+#### PUT
+Updates the message
+- Body fields required: **content**
+
+**Example**
+
+```json
+{
+	"body": {
+        "content": "Hello"
+    }
+}
+```
+
+- Response is a JSON with the updated information
+
+**Example**
+
+```json
+{
+    "content": "Hello"
 }
 ```
