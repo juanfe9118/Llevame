@@ -266,9 +266,10 @@ To deploy a development or production environment, (after installing docker) fol
 
 ```json
 {
-		"body": {
-			"username": "vic@gmail.com",
-			"password": "123"}
+	"body": {
+		"username": "vic@gmail.com",
+		"password": "123"
+    }
 }
 ```
 
@@ -336,8 +337,12 @@ Create a new chat
 
 ```json
 {
-		"body": {
-			"users": [<id1>, <id2>]
+	"body": {
+		"users": [
+            <id1>,
+            <id2>
+        ]
+    }
 }
 ```
 
@@ -416,11 +421,11 @@ Create a new message
 
 ```json
 {
-		"body": {
-			"user": 2,
-            "chat" : 7,
-            "content": "test"
-        }
+	"body": {
+		"user": 2,
+        "chat" : 7,
+        "content": "test"
+    }
 }
 ```
 
@@ -451,8 +456,9 @@ Updates the message
 
 ```json
 {
-		"body": {
-            "content": "Hello"
+	"body": {
+        "content": "Hello"
+    }
 }
 ```
 
