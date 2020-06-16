@@ -1,34 +1,9 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import axios from 'axios';
 
 export class LogIn extends Component {
     state = {
-        email: '',
-        password: '',
         redirect: null,
-        token: null,
-        user_id: null,
-    }
-
-    //When needing information to populate page use mount option to load states
-    /* componentDidMount () {
-        axios.get()
-    }*/
-
-    onChange = (e) => this.setState({ [e.target.name]: e.target.value });
-
-    onSubmit = (e) => {
-        e.preventDefault();
-        axios.post('http://localhost:8000/api/login/', {
-            username: this.state.email,
-            password: this.state.password
-        })
-            .then(res => {
-                console.log(res.data);
-                this.setState({ user_id: res.data.user_id});
-                this.setState({ token: res.data.token});
-            });
     }
 
     backHome = () => this.setState({ redirect: "/" });
@@ -41,20 +16,20 @@ export class LogIn extends Component {
             <div style={boxStyle}>
                 <div style={formStyle}>
                     <h1>Welcome Back!</h1>
-                    <form onSubmit={this.onSubmit}>
+                    <form onSubmit={this.props.onSubmit}>
                         <input
                             type='email'
                             name='email'
                             placeholder='Email'
                             value={this.state.email}
-                            onChange={this.onChange}
+                            onChange={this.props.onChange}
                         /><br></br>
                         <input
                             type='password'
                             name='password'
                             placeholder='Password'
                             value={this.state.password}
-                            onChange={this.onChange}
+                            onChange={this.props.onChange.bind(this)}
                         /><br></br>
                         <button onClick={this.backHome}>Cancel</button>
                         <input type='submit' value='Log In' />
