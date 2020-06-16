@@ -357,7 +357,7 @@ Create a new chat
 }
 ```
 
-### "/api/chats/<id>"
+### "/api/chats/\<id\>/"
 #### DELETE
 Deletes an specific chat
  - No Content Response with code 204
@@ -419,7 +419,8 @@ Create a new message
 		"body": {
 			"user": 2,
             "chat" : 7,
-            "content: "test"
+            "content": "test"
+        }
 }
 ```
 
@@ -437,7 +438,7 @@ Create a new message
 }
 ```
 
-### "/api/messages/<id>/"
+### "/api/messages/\<id\>/"
 #### DELETE
 Deletes an specific message
  - No Content Response with code 204
@@ -451,7 +452,7 @@ Updates the message
 ```json
 {
 		"body": {
-            "content: "Hello"
+            "content": "Hello"
 }
 ```
 
