@@ -19,7 +19,6 @@ class Department(models.Model):
     class Meta:
         verbose_name = ("Department")
         verbose_name_plural = ("Departments")
-        ordering = ['id']
 
     def __str__(self):
         return self.name
@@ -43,7 +42,6 @@ class City(models.Model):
     class Meta:
         verbose_name = ("City")
         verbose_name_plural = ("Cities")
-        ordering = ['id']
 
     def __str__(self):
         return self.name
@@ -175,7 +173,6 @@ class User(AbstractBaseUser):
     class Meta:
         verbose_name = ("User")
         verbose_name_plural = ("Users")
-        ordering = ['id']
 
     def __str__(self):
         return self.email
