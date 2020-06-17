@@ -20,6 +20,7 @@ a {
 }
 
 footer {
+  position: absolute;
   width: 100%;
   margin-top: auto;
   height: 2.5rem;
@@ -28,8 +29,127 @@ footer {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  bottom: 0;
 }
 
 footer p {
   margin-right: 40px;
+}
+
+#signup {
+  height: 50%;
+  width: 25%;
+  align-items: center;
+  border: #7a7a7a 1px solid;
+  border-radius: 15px;
+  background-color: #29ABE2;
+  display: flex;
+  flex-direction: column;
+}
+
+#signup h1 {
+  margin: 15px;
+}
+
+#signup input, select, option {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 5px;
+  background-color: #B3B3B3;
+  border-radius: 10px;
+  border: #7a7a7a 1px solid;
+}
+
+#signup option {
+  width: 100%;
+}
+
+#signup p {
+  margin-top: 50%;
+  font-size: x-large;
+}
+#signup a {
+  font-size: x-large;
+}
+
+#signup #buttons {
+  margin-top: 20px;
+  text-align: center;
+}
+
+#signup #buttons button {
+  padding: 5px;
+  width: 25%;
+  height: 25%;
+  background-color: #FF002BD6;
+  color: #FFF;
+  border-radius: 10px;
+  border: #7a7a7a 1px solid;
+  margin-right: 10px;
+}
+#signup #buttons input {
+  width: 25%;
+  height: 25%;
+  background-color: #00C82FD1;
+  color: #FFF;
+  margin-left: 10px;
+}
+
+::placeholder { 
+  color: #E4E4E4;
+}
+
+#success {
+  height: 91vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#login {
+  height: 50%;
+  width: 25%;
+  align-items: center;
+  border: #7a7a7a 1px solid;
+  border-radius: 15px;
+  background-color: #29ABE2;
+  display: flex;
+  flex-direction: column;
+}
+
+#login h1 {
+  margin-top: 35%;
+  margin-bottom: 15px;
+}
+
+#login input {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 5px;
+  background-color: #B3B3B3;
+  border-radius: 10px;
+  border: #7a7a7a 1px solid;
+}
+
+#login #buttons {
+  margin-top: 20px;
+  text-align: center;
+}
+
+#login #buttons button {
+  padding: 5px;
+  width: 40%;
+  height: 25%;
+  background-color: #FF002BD6;
+  color: #FFF;
+  border-radius: 10px;
+  border: #7a7a7a 1px solid;
+  margin-right: 10px;
+}
+#login #buttons input {
+  width: 40%;
+  height: 25%;
+  background-color: #00C82FD1;
+  color: #FFF;
+  margin-left: 10px;
 }
