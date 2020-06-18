@@ -17,7 +17,7 @@ class Chat(models.Model):
 
     token = models.UUIDField(default=uuid4, editable=False)
     pub_date = models.DateTimeField('date published', default=timezone.now)
-    users = models.ManyToManyField(User, related_name='users')
+    users = models.ManyToManyField(User, related_name='users', on_delete=models.CASCADE)
 
     def __str__(self):
         """
