@@ -1,10 +1,16 @@
-from .models import User, Department, City
-from .serializers import CitySerializer, DepartmentSerializer
+from .models import User, Department, City, Feedback
+from .serializers import (
+    CitySerializer,
+    DepartmentSerializer,
+    FeedbackSerializer,
+    FeedbackSerializerList,
+    UpdateFeedbackSerializer
+)
 from .serializers import UserSerializer, RegisterUserSerializer
 from .serializers import UpdateUserSerializer
 from chat.models import Chat
 from chat.serializers import ChatSerializer
-from rest_framework import viewsets, serializers
+from rest_framework import viewsets, serializers, permissions
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -155,23 +161,48 @@ class UserViewSet(viewsets.ModelViewSet):
     def chats(self, request, pk=None):
         """
         /api/users/<id>/chats/
-        GET - Returns a list of chats associated with the user
-        POST - Creates a new chat with the users sent in the body
+            GET - Returns a list of chats associated with the user
+        /api/users/<id>/chats/<id>
+            POST - Creates a new chat with the users sent in the body
         """
 
         user = self.get_object()
-        if request.method == "GET":
+        if request.method == 'GET':
             chats = Chat.objects.filter(users=user)
             context = {
                 'request': request
             }
             serializer = ChatSerializer(chats, many=True, context=context)
             return Response(serializer.data)
-        if request.method == "POST":
+        if request.method == 'POST':
             serializer = ChatSerializer(data=request.data)
             serializer.is_valid(raise_exception=True)
             serializer.save()
             return Response(serializer.data, status=201)
+
+    @action(detail=True)
+    def feedback(self, request, pk=None):
+        """
+        /api/users/<id>/feedback
+            GET - Returns a list of feedback associated with the user
+        """
+        user = self.get_object()
+        feedback = Feedback.objects.filter(sender_id=user)
+        serializer = FeedbackSerializerList(feedback, many=True)
+        return Response(serializer.data)
+
+    @feedback.mapping.post
+    def update_feedback(self, request, pk=None):
+        """
+        /api/users/<id>/feedback/
+            POST - Creates a new feedback associating it with the user
+        """
+        data = request.data.copy()
+        data.update({'sender': self.get_object().id})
+        serializer = FeedbackSerializer(data=data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status=201)
 
 class DepartmentViewSet(viewsets.ModelViewSet):
     """
@@ -234,3 +265,22 @@ class CustomAuthToken(ObtainAuthToken):
             raise serializers.\
                 ValidationError(
                         {'Response error': 'Wrong email or password'})
+
+class FeedbackViewSet(viewsets.ModelViewSet):
+    """
+    /api/feedback/
+        GET - Returns a list of feedback associated with the user
+    /api/feedback/<id>/
+        POST - Creates a new feedback associated with the user
+        PUT - Updates a registry using the id, allowed (comment and score)
+    """
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = Feedback.objects.all().order_by('id')
+
+    def get_serializer_class(self):
+        if (self.request.method == 'GET'):
+            return FeedbackSerializerList
+        if (self.request.method == 'PUT'):
+            return UpdateFeedbackSerializer
+        else:
+            return FeedbackSerializer
