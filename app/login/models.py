@@ -189,6 +189,24 @@ class User(AbstractBaseUser):
     def get_absolute_url(self):
         return reverse("User_detail", kwargs={"pk": self.pk})
 
+class Feedback(models.Model):
+    """
+        Defines the feedback data model
+    """
+
+    recipient = models.ForeignKey(User, related_name="recipient", on_delete=models.CASCADE)
+    sender = models.ForeignKey(User, related_name="sender", on_delete=models.CASCADE)
+    score = models.DecimalField(max_digits=1, decimal_places=0)
+    comment = models.CharField(max_length=100)
+    pub_date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        """
+            String representation of object
+        """
+
+        return "{} - {}".format(self.score, self.comment)
+
 
 # Create a token when a user is created
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
