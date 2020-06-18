@@ -13,6 +13,8 @@ import SignUpConf from './components/layout/SignUpConf';
 import UserHeader from './components/layout/UserHeader';
 import UserLanding from './components/UserLanding';
 
+import VehicleRegister from './components/vehicle';
+
 import './App.css';
 
 class App extends Component {
@@ -78,6 +80,12 @@ class App extends Component {
             <React.Fragment>
               <UserHeader token={this.state.token} user_id={this.state.user_id} />
               <UserLanding token={this.state.token} user_id={this.state.user_id} />
+            </React.Fragment>
+          )} />
+          <Route path='/vehicle' render={props => (
+            <React.Fragment>
+              <UserHeader token={this.state.token} user_id={this.state.user_id} />
+              <VehicleRegister token={this.state.token} user_id={this.state.user_id} />
             </React.Fragment>
           )} />
           <Footer />
