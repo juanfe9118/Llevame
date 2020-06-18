@@ -18,8 +18,10 @@ export class SignUpConf extends Component {
             return <Redirect to={this.state.redirect} />
           }
         return (
-            <div>
-                <h3 on>User successfully created you will be redirected to the log in page shortly.</h3>
+            <div id='box'>
+                <div id='success'>
+                    <h3 on>User successfully created you will be redirected to the log in page shortly.</h3>
+                </div>
             </div>
         )
     }

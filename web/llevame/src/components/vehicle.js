@@ -49,35 +49,39 @@ export default class VehicleRegister extends Component {
     
     render() {
         return (
-            <div>
-                <h1>REGISTER A NEW VEHICLE</h1>
-                <form onSubmit={this.onSubmit}>
-                    <input
-                        type='text'
-                        name='plate'
-                        placeholder='plate'
-                        value={this.state.plate}
-                        onChange={this.onChange}
+            <div id='box'>
+                <div id='vehicle_reg'>
+                    <h1>New vehicle</h1>
+                    <form onSubmit={this.onSubmit}>
+                        <input
+                            type='text'
+                            name='plate'
+                            placeholder='plate'
+                            value={this.state.plate}
+                            onChange={this.onChange}
+                            /><br></br>
+                        <input
+                            type='text'
+                            name='model'
+                            placeholder='model'
+                            value={this.state.model}
+                            onChange={this.onChange}
                         /><br></br>
-                    <input
-                        type='text'
-                        name='model'
-                        placeholder='model'
-                        value={this.state.model}
-                        onChange={this.onChange}
-                    /><br></br>
-                    <select name='color' onChange={this.onChange}>
-                        <option value="" disabled selected>color</option>
-                        {options(colors)}
-                        onChange={this.onChange}
-                    </select><br></br>
-                    <select name='brand' onChange={this.onChange}>
-                        <option value="" disabled selected>brand</option>
-                        {options(brands)}
-                    </select>
-                    <button onClick={this.backHome}>Cancel</button>
-                    <input type='submit' value='Register' />
-                </form>
+                        <select name='color' onChange={this.onChange}>
+                            <option value="" disabled selected>color</option>
+                            {options(colors)}
+                            onChange={this.onChange}
+                        </select><br></br>
+                        <select name='brand' onChange={this.onChange}>
+                            <option value="" disabled selected>brand</option>
+                            {options(brands)}
+                        </select>
+                        <div id='buttons'>
+                            <button onClick={this.backHome}>Cancel</button>
+                            <input type='submit' value='Register' />
+                        </div>
+                    </form>
+                </div>
             </div>
         )
     }

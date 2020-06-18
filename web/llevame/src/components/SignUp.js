@@ -85,53 +85,58 @@ class SignUp extends Component {
             return <Redirect to={this.state.redirect} />
           }
         return (
-            <div style={boxStyle}>
-                <div style={formStyle}>
+            <div id='box'>
+                <div id='signup'>
                     <h1>Get Started!</h1>
                     <form onSubmit={this.onSubmit}>
                         <input
+                            id='first_name'
                             type='text'
                             name='first_name'
                             placeholder='First Name'
                             value={this.state.first_name}
                             onChange={this.onChange}
-                        /><br></br>
+                        />
                         <input
+                            id='last_name'
                             type='text'
                             name='last_name'
                             placeholder='Last Name'
                             value={this.state.last_name}
                             onChange={this.onChange}
                         /><br></br>
-                        <input
-                            type='email'
-                            name='email'
-                            placeholder='Email'
-                            value={this.state.email}
-                            onChange={this.onChange}
-                        /><br></br>
-                        <select name='type_id' onChange={this.onChange}>
+                        <select id='type_id' name='type_id' onChange={this.onChange}>
                             <option value="" disabled selected>ID Type</option>
                             <option value='CC'>CC</option>
                             <option value='CE'>CE</option>
                             <option value='PA'>PA</option>
                         </select>
                         <input
+                            id='n_document'
                             type='text'
                             name='n_document'
                             placeholder='ID Number'
                             value={this.state.n_document}
                             onChange={this.onChange}
                         /><br></br>
-                        <select name='department' onChange={this.depChange}>
+                        <select id='department' name='department' onChange={this.depChange}>
                             <option value="" disabled selected>Department</option>
                             <DepList depList={this.state.depList} />
                         </select>
-                        <select name='city' onChange={this.cityChange}>
+                        <select id='city' name='city' onChange={this.cityChange}>
                             <option value="" disabled selected>City</option>
                             <CityList cityList={this.state.cityList} />
                         </select><br></br>
                         <input
+                            id='email'
+                            type='email'
+                            name='email'
+                            placeholder='Email'
+                            value={this.state.email}
+                            onChange={this.onChange}
+                        /><br></br>
+                        <input
+                            id='password'
                             type='password'
                             name='password'
                             placeholder='Password'
@@ -139,37 +144,22 @@ class SignUp extends Component {
                             onChange={this.onChange}
                         /><br></br>
                         <input
+                            id='password'
                             type='password'
                             name='confPass'
                             placeholder='Confirm Password'
                             value={this.state.confPass}
                             onChange={this.onChange}
                         /><br></br>
-                        <button onClick={this.backHome}>Cancel</button>
-                        <input type='submit' value='Sign Up' />
+                        <div id='buttons'>
+                            <button onClick={this.backHome}>Cancel</button>
+                            <input type='submit' value='Sign Up' />
+                        </div>
                     </form>
                 </div>
             </div>
         )
     }
-}
-
-const boxStyle = {
-    height: '91vh',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-}
-
-const formStyle = {
-    height: '75%',
-    width: '25%',
-    alignItems: 'center',
-    border: '#005DFF 1px solid',
-    borderRadius: '15px',
-    backgroundColor: '#29ABE2',
-    display: 'flex',
-    flexDirection: 'column',
 }
 
 export default SignUp
