@@ -21,7 +21,7 @@ export class UserHeader extends Component {
 
     goHome = () => this.setState({redirect: '/userlanding'});
 
-    goProfile = () => this.setState({redirect: '/userlanding'});
+    goProfile = () => this.setState({redirect: '/vehicle'});
 
     render() {
         if (this.state.redirect) {

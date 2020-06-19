@@ -14,7 +14,7 @@ import UserHeader from './components/layout/UserHeader';
 import UserLanding from './components/UserLanding';
 import Chats from './components/Chats';
 
-import VehicleRegister from './components/vehicle';
+import VehicleRegister from './components/Vehicle';
 
 import './App.css';
 
