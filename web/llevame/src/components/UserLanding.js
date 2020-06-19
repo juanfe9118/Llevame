@@ -8,8 +8,8 @@ export default class UserLanding extends Component {
                 <div style={divStyle}>
                     <h2 style={{padding: '20px', margin: '30px 0', fontSize: '50px', textAlign: 'center'}}>What do you want to do today?</h2>
                     <div style={{width: '70%', display: 'flex', flexDirection: 'column'}}>
-                        <Link style={linkStyle} to='#' >Drive</Link>
-                        <Link style={linkStyle} to='#' >Ride</Link>
+                        <Link style={linkStyle} to='/chats' >Drive</Link>
+                        <Link style={linkStyle} to='/chats' >Ride</Link>
                     </div>
                 </div>
             </div>
