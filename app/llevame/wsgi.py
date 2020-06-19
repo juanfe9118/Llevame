@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Llevame.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'llevame.settings')
 
 application = get_wsgi_application()

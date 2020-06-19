@@ -1,6 +1,5 @@
-"""
-QUERY TO INITIALIZE DEPARTMENT AND CITY MODELS
-"""
+-- QUERY TO INITIALIZE DEPARTMENT AND CITY MODELS
+
 INSERT INTO public.login_department(name, code)
     VALUES ('Antioquia', 5),
            ('Atlantico', 8),
