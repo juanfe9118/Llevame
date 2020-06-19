@@ -15,6 +15,9 @@ class MessageViewSet(viewsets.ModelViewSet):
     # serializer_class = MessageSerializer
 
     def get_serializer_class(self):
+        """
+        Overrides the method so specific serializers can be called according to the verb
+        """
         if (self.request.method == "PUT"):
             return UpdateMessageSerializer
         else:

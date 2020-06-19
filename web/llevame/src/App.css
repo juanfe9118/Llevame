@@ -3,18 +3,15 @@
   margin: 0;
   padding: 0;
 }
-
 body {
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.4;
   background-color: #B3B3B3;
 }
-
 a {
   color: #020202;
   text-decoration: none;
 }
-
 .headerdiv {
   margin-right: 20px;
 }
@@ -36,9 +33,16 @@ footer p {
   margin-right: 40px;
 }
 
+#box {
+  height: 91vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #signup {
-  height: 50%;
-  width: 25%;
+  height: 400px;
+  width: 325px;
   align-items: center;
   border: #7a7a7a 1px solid;
   border-radius: 15px;
@@ -49,10 +53,10 @@ footer p {
 
 #signup h1 {
   margin: 15px;
+  margin-bottom: 25px;
 }
 
 #signup input, select, option {
-  width: 100%;
   padding: 5px;
   margin-bottom: 5px;
   background-color: #B3B3B3;
@@ -62,14 +66,6 @@ footer p {
 
 #signup option {
   width: 100%;
-}
-
-#signup p {
-  margin-top: 50%;
-  font-size: x-large;
-}
-#signup a {
-  font-size: x-large;
 }
 
 #signup #buttons {
@@ -87,6 +83,7 @@ footer p {
   border: #7a7a7a 1px solid;
   margin-right: 10px;
 }
+
 #signup #buttons input {
   width: 25%;
   height: 25%;
@@ -95,20 +92,34 @@ footer p {
   margin-left: 10px;
 }
 
+#first_name, #last_name, #department, #city, #n_document {
+  width: 145px;
+}
+
+#first_name, #department {
+  margin-right: 10px;
+}
+
+#type_id {
+  width: 80px;
+  margin-right: 70px;
+}
+
+#n_document {
+  margin-left: 5px;
+}
+
+#email, #password {
+  width: 300px;
+}
+
 ::placeholder { 
   color: #E4E4E4;
 }
 
-#success {
-  height: 91vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 #login {
-  height: 50%;
-  width: 25%;
+  height: 350px;
+  width: 300px;
   align-items: center;
   border: #7a7a7a 1px solid;
   border-radius: 15px;
@@ -118,8 +129,9 @@ footer p {
 }
 
 #login h1 {
-  margin-top: 35%;
-  margin-bottom: 15px;
+  font-weight: bold;
+  margin-top: 25%;
+  margin-bottom: 20px;
 }
 
 #login input {
@@ -132,7 +144,7 @@ footer p {
 }
 
 #login #buttons {
-  margin-top: 20px;
+  margin-top: 15px;
   text-align: center;
 }
 
@@ -144,12 +156,79 @@ footer p {
   color: #FFF;
   border-radius: 10px;
   border: #7a7a7a 1px solid;
-  margin-right: 10px;
+  margin-right: 5px;
 }
 #login #buttons input {
   width: 40%;
   height: 25%;
   background-color: #00C82FD1;
   color: #FFF;
-  margin-left: 10px;
+  margin-left: 5px;
+}
+
+#success {
+  height: 350px;
+  width: 300px;
+  align-items: center;
+  border: #7a7a7a 1px solid;
+  border-radius: 15px;
+  background-color: #29ABE2;
+  display: flex;
+  flex-direction: column;
+}
+
+#success h3 {
+  text-align: center;
+  margin-top: 40%;
+}
+
+#vehicle_reg {
+  height: 350px;
+  width: 300px;
+  align-items: center;
+  border: #7a7a7a 1px solid;
+  border-radius: 15px;
+  background-color: #29ABE2;
+  display: flex;
+  flex-direction: column;
+}
+
+#vehicle_reg h1 {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 20%;
+  margin-bottom: 20px;
+}
+
+#vehicle_reg input, select {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 5px;
+  background-color: #B3B3B3;
+  border-radius: 10px;
+  border: #7a7a7a 1px solid;
+}
+
+#vehicle_reg #buttons {
+  margin-top: 15px;
+  text-align: center;
+}
+
+#vehicle_reg #buttons button {
+  padding: 5px;
+  width: 40%;
+  height: 25%;
+  background-color: #FF002BD6;
+  color: #FFF;
+  border-radius: 10px;
+  border: #7a7a7a 1px solid;
+  margin-right: 5px;
+}
+
+#vehicle_reg #buttons input {
+  width: 40%;
+  height: 25%;
+  background-color: #00C82FD1;
+  color: #FFF;
+  margin-left: 5px;
 }

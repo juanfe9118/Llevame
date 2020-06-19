@@ -13,8 +13,8 @@ export class LogIn extends Component {
             return <Redirect to={this.state.redirect} />
           }
         return (
-            <div style={boxStyle}>
-                <div style={formStyle}>
+            <div id='box'>
+                <div id='login'>
                     <h1>Welcome Back!</h1>
                     <form onSubmit={this.props.onSubmit}>
                         <input
@@ -31,31 +31,15 @@ export class LogIn extends Component {
                             value={this.state.password}
                             onChange={this.props.onChange.bind(this)}
                         /><br></br>
-                        <button onClick={this.backHome}>Cancel</button>
-                        <input type='submit' value='Log In' />
+                        <div id='buttons'>
+                            <button onClick={this.backHome}>Cancel</button>
+                            <input type='submit' value='Log In' />
+                        </div>
                     </form>
                 </div>
             </div>
         )
     }
-}
-
-const boxStyle = {
-    height: '91vh',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-}
-
-const formStyle = {
-    height: '75%',
-    width: '25%',
-    alignItems: 'center',
-    border: '#005DFF 1px solid',
-    borderRadius: '15px',
-    backgroundColor: '#29ABE2',
-    display: 'flex',
-    flexDirection: 'column',
 }
 
 export default LogIn

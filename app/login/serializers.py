@@ -1,4 +1,4 @@
-from .models import User, Department, City
+from .models import User, Department, City, Feedback
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated
@@ -57,3 +57,31 @@ class CitySerializer(serializers.ModelSerializer):
     class Meta:
         model = City
         fields = ['id', 'department', 'code', 'name']
+
+class FeedbackSerializer(serializers.ModelSerializer):
+    """
+    Converts Message model data to native python data types
+    """
+    class Meta:
+        model = Feedback
+        fields = ['id', 'recipient', 'sender', 'score', 'comment']
+
+class FeedbackSerializerList(serializers.ModelSerializer):
+    """
+    Handles GET verb returning a list of feedbacks using the model data
+    """
+    sender = UserSerializer(read_only=True)
+    recipient = UserSerializer(read_only=True)
+    class Meta:
+        model = Feedback
+        fields = ['id', 'recipient', 'sender', 'score', 'comment', 'pub_date']
+
+class UpdateFeedbackSerializer(serializers.ModelSerializer):
+    """
+    Handles PUT verb updating a feedback using the model data
+    """
+    class Meta:
+        model = Feedback
+        fields = ['id', 'recipient', 'sender', 'score', 'comment']
+        read_only_fields = ['id', 'recipient', 'sender']
+
