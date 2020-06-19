@@ -72,9 +72,10 @@ const liHidden = {
 }
 
 const menuStyle = {
+    fontSize: '20px',
     padding: '10px 0',
     margin: '5px 50px',
-    backgroundColor: 'rgba(112, 112, 112, 0.9)',
+    backgroundColor: '#B3B3B3',
     color: '#fff',
     cursor: 'pointer',
     border: '#005DFF 1px solid',
@@ -82,9 +83,10 @@ const menuStyle = {
 }
 
 const menuHover = {
+    fontSize: '20px',
     padding: '10px 0',
     margin: '5px 50px',
-    backgroundColor: 'rgb(112, 112, 112)',
+    backgroundColor: '#9e9e9e',
     color: '#fff',
     cursor: 'pointer',
     border: '#005DFF 1px solid',

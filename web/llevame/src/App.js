@@ -105,7 +105,7 @@ class App extends Component {
           )} />
           <Route path='/vehicle' render={props => (
             <React.Fragment>
-              <UserHeader token={this.state.token} user_id={this.state.user_id} />
+              <UserHeader token={this.state.token} user_id={this.state.user_id} signOut={this.signOut.bind(this)} />
               <VehicleRegister token={this.state.token} user_id={this.state.user_id} />
             </React.Fragment>
           )} />
