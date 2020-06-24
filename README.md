@@ -9,6 +9,14 @@ To deploy a development or production environment, (after installing docker) fol
     - docker-compose up --no-start
     - docker-compose start
 
+# Introduction
+
+
+Llevame is a product that aims to connect commuters amongst themselves to share car rides in Colombia. The idea is for drivers and riders to be able to chat with each other to coordinate the ride. For more information on how llevame was done and why it came to be you can check the following blog posts: 
+Oscar' [blog](https://www.linkedin.com/pulse/ll%25C3%25A9vame-my-final-project-holberton-oscar-g%25C3%25B3mez-toro/)
+Victor's [blog](https://www.linkedin.com/pulse/my-experience-building-llevame-victor-arteaga/)
+Juan's [blog](https://www.linkedin.com/pulse/my-experience-final-project-juan-felipe-buitrago-vargas/)
+
 # API Guide
 
 ## "/api/users"
@@ -471,3 +479,9 @@ Updates the message
     "content": "Hello"
 }
 ```
+
+# Authors
+
+Oscar Gomez - [LinkedIn](https://www.linkedin.com/in/oscar-g%C3%B3mez-toro-8a274b95/) / [GitHub](https://github.com/oscargomez87)
+Juan Buitrago - [LinkedIn](https://www.linkedin.com/in/juan-felipe-buitrago-vargas-b6b219122/) / [GitHub](https://github.com/juanfe9118)
+Victor Arteaga - [LinkedIn](https://www.linkedin.com/in/victor-arteaga-732991193/) / [GitHub](https://github.com/viiic98)
