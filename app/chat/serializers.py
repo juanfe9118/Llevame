@@ -2,8 +2,6 @@
 Converts data to native python data types
 """
 from .models import Chat, Message
-from login.models import User
-from login.serializers import UserSerializer
 from rest_framework import serializers
 
 
