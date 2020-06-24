@@ -4,11 +4,13 @@ services:
     db:
         image: postgres:12.3
         volumes:
-            - ~/postgres/llevame/dumps:/var/backups
+            - ~/postgres:/var/lib/postgresql/data
         environment:
             - POSTGRES_DB=postgres
             - POSTGRES_USER=postgres
             - POSTGRES_PASSWORD=postgres
+        ports:
+            - "5432:5432"
 
     app:
         build:
@@ -16,7 +18,17 @@ services:
         ports:
             - "8000:8000"
         volumes:
-            - ./app:/app
-        command: sh -c "dockerize -wait tcp://db:5432 python manage.py runserver 0.0.0.0:8000"
+            - ./:/home/app/llevame/
+        command: sh -c "dockerize -wait tcp://db:5432 python app/manage.py runserver 0.0.0.0:8000"
         depends_on:
             - "db"
+
+    front:
+        image: node:latest
+        ports:
+            - "3000:3000"
+        volumes:
+            - ./:/home/llevame
+        stdin_open: true
+        working_dir: /home/llevame/web/llevame
+        command: bash -c "npm install && npm start"

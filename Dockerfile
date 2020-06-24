@@ -5,15 +5,14 @@ ENV PYTHONUNBUFFERED 1
 ENV DOCKERIZE_VERSION v0.6.1
 
 COPY ./requirements.txt /requirements.txt
-COPY ./app /app
 
 ADD https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz .
 
-RUN tar -C /usr/local/bin -xzvf dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
-    && rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz; \
-    pip install -r requirements.txt
+RUN pip install -r requirements.txt; \
+    tar -C /usr/local/bin -xzvf dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && adduser --gecos "" --disabled-password app
 
-WORKDIR /app
+WORKDIR /home/app/llevame
 
-RUN adduser --disabled-password app
 USER app

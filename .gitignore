@@ -1,3 +1,5 @@
-**/*cache*
-**/*sql
 .gitignore
+**/*cache*
+**/env
+**/*sql
+**/*vscode*
