@@ -22,6 +22,10 @@ export default class VehicleRegister extends Component {
 
     onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
+    backHome = () => {
+        return <Redirect to={this.state.redirect} />
+    };
+
     onSubmit = (e) => {
         e.preventDefault();
         const headers = {
