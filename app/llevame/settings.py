@@ -64,7 +64,7 @@ CORS_ORIGIN_WHITELIST = [
     'http://127.0.0.1:3000',
 ]
 
-ROOT_URLCONF = 'Llevame.urls'
+ROOT_URLCONF = 'llevame.urls'
 
 TEMPLATES = [
     {
@@ -84,7 +84,7 @@ TEMPLATES = [
 
 AUTH_USER_MODEL = 'login.User'
 
-WSGI_APPLICATION = 'Llevame.wsgi.application'
+WSGI_APPLICATION = 'llevame.wsgi.application'
 
 
 # Database

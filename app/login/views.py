@@ -127,7 +127,7 @@ class UserViewSet(viewsets.ModelViewSet):
             return Response({'response': 'Vehicle registered successfully',
                              'vehicle': VehicleSerializer(new_vehicle).data},
                             status=201)
-        return Response(serializer.errors)
+        return Response(serializer.errors, status=400)
 
     @vehicles.mapping.put
     def update_vehicle(self, request, pk):
