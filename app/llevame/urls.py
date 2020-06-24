@@ -24,8 +24,8 @@ from chat.urls import router as chat_router
 
 
 router = routers.DefaultRouter()
-router.extend(login_router)
-router.extend(chat_router)
+router.registry.extend(login_router.registry)
+router.registry.extend(chat_router.registry)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

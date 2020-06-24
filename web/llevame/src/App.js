@@ -12,6 +12,7 @@ import LogIn from './components/LogIn';
 import SignUpConf from './components/layout/SignUpConf';
 import UserHeader from './components/layout/UserHeader';
 import UserLanding from './components/UserLanding';
+import Chats from './components/Chats';
 
 import VehicleRegister from './components/vehicle';
 
@@ -23,7 +24,8 @@ class App extends Component {
     password: '',
     token: null,
     user_id: null,
-    redirect: null,
+    redirect: '/',
+    user_info: {},
   }
 
   componentDidMount() {
@@ -31,6 +33,13 @@ class App extends Component {
       this.setState({ redirect: './userlanding' });
     }
   }
+
+  signOut = () => {
+    this.setState({token: null});
+    this.setState({user_id: null});
+    this.setState({user_info: null});
+    this.setState({redirect: '/'});
+  };
 
   onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
@@ -44,7 +53,13 @@ class App extends Component {
               this.setState({ user_id: res.data.user_id });
               this.setState({ token: res.data.token });
               this.setState({ redirect: './userlanding' });
-          });
+              axios.get(`http://localhost:8000/api/users/${this.state.user_id}`)
+                .then(res => this.setState({user_info: res.data}))
+                .catch(err => console.log(err.response.data));
+                this.setState({ email: '' });
+                this.setState({ password: '' });
+          })
+          .catch(err => console.log(err.response));
   }
 
   render() {
@@ -78,8 +93,14 @@ class App extends Component {
           )} />
           <Route path='/userlanding' render={props => (
             <React.Fragment>
-              <UserHeader token={this.state.token} user_id={this.state.user_id} />
-              <UserLanding token={this.state.token} user_id={this.state.user_id} />
+              <UserHeader token={this.state.token} user_id={this.state.user_id} signOut={this.signOut.bind(this)} />
+              <UserLanding token={this.state.token} user_id={this.state.user_id} user={this.state.user_info} />
+            </React.Fragment>
+          )} />
+          <Route path='/chats' render={props => (
+            <React.Fragment>
+              <UserHeader token={this.state.token} user_id={this.state.user_id} signOut={this.signOut.bind(this)} />
+              <Chats token={this.state.token} user_id={this.state.user_id} user={this.state.user_info} />
             </React.Fragment>
           )} />
           <Route path='/vehicle' render={props => (
